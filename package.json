@@ -1,18 +1,18 @@
 {
-    "name": "@webcyou-org/replacer",
-    "version": "0.2.0",
-    "description": "Changing image paths with Media Queries.",
+    "name": "@webcyou-org/mqa",
+    "version": "0.0.1",
+    "description": "Media Query Awesome JavaScript Library",
     "keywords": ["mediaquery", "attribute", "change"],
-    "main": "dist/replacer.umd.js",
-    "module": "dist/replacer.es.js",
-    "typings": "dist/types/replacer.d.ts",
+    "main": "dist/mqa.umd.js",
+    "module": "dist/mqa.es.js",
+    "typings": "dist/types/mqa.d.ts",
     "files": [
         "dist"
     ],
     "author": "daiuske.takayama",
     "repository": {
         "type": "git",
-        "url": "https://github.com/webcyou-org/replacer"
+        "url": "https://github.com/webcyou-org/mqa"
     },
     "license": "MIT",
     "engines": {
