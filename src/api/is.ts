@@ -1,17 +1,17 @@
-import { state } from '../models'
+import { mqa } from '../models'
 
 export function isMatch(context: string): boolean {
-    return state.isMatch(context);
+    return mqa.isMatch(context);
 }
 
 export function isType(type: string): boolean {
-    return state.isType(type);
+    return mqa.isType(type);
 }
 
 export function isDeviceType(deviceType: string): boolean {
-    return state.isDeviceType(deviceType);
+    return mqa.isDeviceType(deviceType);
 }
 
 export function isQuery(query: string): boolean {
-    return state.isQuery(query);
+    return mqa.isQuery(query);
 }

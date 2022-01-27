@@ -54,7 +54,7 @@ Using Custom BreakPoint
 
 ```
 <script>
-    replacer.init([
+    mqa.init([
         {
             type: 'large',
             deviceType: 'pc',
