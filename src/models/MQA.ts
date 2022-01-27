@@ -6,17 +6,33 @@ export class MQA {
     private static _instance: MQA = null;
     breakpointList: Breakpoint[] = BREAKPOINT_LIST;
 
-    constructor(option?: any) {
-        if (MQA._instance) {
-            console.log('_instance 返却')
-            return MQA._instance;
-        } else {
+    private constructor(option?: any) {
+        if (!MQA._instance) {
             MQA._instance = this;
         }
         if (option) {
             this.setBreakpointList(Array.isArray(option) ? option : [option]);
         }
         this.check();
+        return MQA._instance;
+    }
+
+    static fromData(option?: any): MQA {
+        if (!this._instance) {
+            this._instance = new MQA(option);
+        }
+        if (option) {
+            this._instance.setBreakpointList(Array.isArray(option) ? option : [option]);
+        }
+        this._instance.check();
+        return this._instance;
+    }
+
+    static get instance(): MQA {
+        if (!this._instance) {
+            this._instance = new MQA();
+        }
+        return this._instance;
     }
 
     check(): void {
@@ -29,15 +45,12 @@ export class MQA {
         })
     }
 
-    static getInstance(): MQA {
-        return MQA._instance;
-    }
-
     setBreakpointList(breakpointList: Breakpoint[]): void {
         this.breakpointList = breakpointList;
         state.type = breakpointList[0].type;
         state.deviceType = breakpointList[0].deviceType;
         state.query = breakpointList[0].query;
+        console.log(this.breakpointList);
     }
 
     isMatch(context: string): boolean {
@@ -57,4 +70,4 @@ export class MQA {
     }
 }
 
-export const mqa = new MQA();
+export const mqa = MQA.instance;

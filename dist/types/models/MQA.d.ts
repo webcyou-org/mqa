@@ -2,9 +2,10 @@ import { Breakpoint } from '../types/breakpoint';
 export declare class MQA {
     private static _instance;
     breakpointList: Breakpoint[];
-    constructor(option?: any);
+    private constructor();
+    static fromData(option?: any): MQA;
+    static get instance(): MQA;
     check(): void;
-    static getInstance(): MQA;
     setBreakpointList(breakpointList: Breakpoint[]): void;
     isMatch(context: string): boolean;
     isType(type: string): boolean;

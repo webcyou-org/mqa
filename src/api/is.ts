@@ -1,6 +1,9 @@
 import { mqa } from '../models'
 
+// const mqa = MQA.instance;
+
 export function isMatch(context: string): boolean {
+    console.log('isMatch')
     return mqa.isMatch(context);
 }
 
