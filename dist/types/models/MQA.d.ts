@@ -5,6 +5,11 @@ export declare class MQA {
     private constructor();
     static fromData(option?: any): MQA;
     static get instance(): MQA;
+    get callbackState(): {
+        type: string;
+        deviceType: string;
+        query: string;
+    };
     check(): void;
     setBreakpointList(breakpointList: Breakpoint[]): void;
     isMatch(context: string): boolean;

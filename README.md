@@ -47,6 +47,7 @@
 | isType         | 'small', 'middle', 'large' | string         | boolean | Verify MediaQueryList matches.         |
 | isDeviceType   | 'sp', 'tab', 'pc'          | string         | boolean | Verify MediaQueryList matches.         |
 | isQuery        | media query                | string         | boolean | Verify MediaQueryList matches.         |
+| callBack       | callback                   | Function       | state   | callback current state.         |
 
 ## Optional
 
@@ -72,6 +73,14 @@ Using Custom BreakPoint
         }]
     );
 </script>
+```
+
+callBack
+
+```
+mqa.callback(function(state) {
+    console.log(state);
+});
 ```
 
 ## Creators

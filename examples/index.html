@@ -9,12 +9,24 @@
     <script src="../dist/mqa.umd.js"></script>
 </head>
 <body>
+    <p>type: <span id="type"></span></p>
+    <p>deviceType: <span id="deviceType"></span></p>
+    <p>query: <span id="query"></span></p>
     <script>
-    mqa.init({
-        type: 'large',
-        deviceType: 'pc',
-        query: '(min-width: 200px)'
-    });
+        var typeElem = document.getElementById('type');
+        var deviceTypeElem = document.getElementById('deviceType');
+        var queryElem = document.getElementById('query');
+        // mqa.init({
+        //     type: 'large',
+        //     deviceType: 'pc',
+        //     query: '(min-width: 200px)'
+        // });
+        mqa.init();
+        mqa.callback(function(state) {
+            typeElem.innerText = state.type;
+            deviceTypeElem.innerText = state.deviceType;
+            queryElem.innerText = state.query;
+        });
     </script>
 </body>
 </html>

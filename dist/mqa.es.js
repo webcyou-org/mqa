@@ -1,7 +1,10 @@
 let state = {
     type: 'large',
     deviceType: 'pc',
-    query: '(min-width: 1201px)'
+    query: '(min-width: 1201px)',
+    callBackFunction: () => {
+        return;
+    }
 };
 
 const BREAKPOINT_LIST = [
@@ -51,6 +54,13 @@ class MQA {
         }
         return this._instance;
     }
+    get callbackState() {
+        return {
+            type: state.type,
+            deviceType: state.deviceType,
+            query: state.query
+        };
+    }
     check() {
         this.breakpointList.forEach(breakpoint => {
             if (window.matchMedia(breakpoint.query).matches) {
@@ -65,7 +75,6 @@ class MQA {
         state.type = breakpointList[0].type;
         state.deviceType = breakpointList[0].deviceType;
         state.query = breakpointList[0].query;
-        console.log(this.breakpointList);
     }
     isMatch(context) {
         return state.type === context || state.deviceType === context || state.query === context;
@@ -84,26 +93,20 @@ const mqa = MQA.instance;
 
 function mediaQueryChangeEvent(event) {
     if (event.matches) {
-        console.log('change');
+        mqa.check();
+        state.callBackFunction(mqa.callbackState);
     }
 }
 
 function addEvent() {
-    console.log('addEvent');
-    console.log(mqa.breakpointList);
     mqa.breakpointList.forEach(breakpoint => {
         window.matchMedia(breakpoint.query).addEventListener('change', mediaQueryChangeEvent);
     });
 }
 
 function init(option) {
-    // console.log(option)
-    console.log('init');
-    // const mqa = new MQA(option);
-    // console.log(MQA.instance)
     MQA.fromData(option);
     addEvent();
-    console.log(mqa.breakpointList);
 }
 
 function getType() {
@@ -123,7 +126,6 @@ function resetEvent() {
 
 // const mqa = MQA.instance;
 function isMatch(context) {
-    console.log('isMatch');
     return mqa.isMatch(context);
 }
 function isType(type) {
@@ -136,5 +138,14 @@ function isQuery(query) {
     return mqa.isQuery(query);
 }
 
-export { addEvent, getState, getType, init, isDeviceType, isMatch, isQuery, isType, resetEvent };
+function callback(fn) {
+    state.callBackFunction = fn;
+    mqa.breakpointList.forEach(breakpoint => {
+        if (window.matchMedia(breakpoint.query).matches) {
+            return fn(mqa.callbackState);
+        }
+    });
+}
+
+export { addEvent, callback, getState, getType, init, isDeviceType, isMatch, isQuery, isType, resetEvent };
 //# sourceMappingURL=mqa.es.js.map

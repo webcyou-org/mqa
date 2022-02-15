@@ -35,6 +35,14 @@ export class MQA {
         return this._instance;
     }
 
+    get callbackState() {
+        return {
+            type: state.type,
+            deviceType: state.deviceType,
+            query: state.query
+        }
+    }
+
     check(): void {
         this.breakpointList.forEach(breakpoint => {
             if (window.matchMedia(breakpoint.query).matches) {
@@ -50,7 +58,6 @@ export class MQA {
         state.type = breakpointList[0].type;
         state.deviceType = breakpointList[0].deviceType;
         state.query = breakpointList[0].query;
-        console.log(this.breakpointList);
     }
 
     isMatch(context: string): boolean {
